@@ -76,7 +76,7 @@
 
 
 
-* 首頁導覽 (index.html / 歡迎頁面.html)
+* 首頁導覽 (index.html / welcome.html)
 
 
 
@@ -121,8 +121,13 @@
 &nbsp;                           3.一鍵移除與快速跳轉：點擊愛心可立即取消收藏並刷清清單；底部設有「查看景點」按鈕可快速連回景點列表。
 
 
+* 景點管理登入 (admin_login.html)
 
-* 後台景點管理 (景點管理.html)
+&nbsp;                            1. 登入管理:當使用者要進入景點管理時必須要先登入成功才能操作。
+
+
+
+* 後台景點管理 (manage.html)
 
 
 
@@ -156,6 +161,14 @@
 
 
 <img width="897" height="841" alt="景點詳細內容" src="https://github.com/user-attachments/assets/aae4ff9c-731f-46f8-883e-4cb9c2fc8847" />
+
+
+
+* 景點管理登入
+
+
+
+  <img width="1574" height="911" alt="景點管理登入" src="https://github.com/user-attachments/assets/2d60a0c0-b34a-478a-919d-b63eb5df9e8e" />
 
 
 
@@ -215,23 +228,13 @@
 
 
 
-系統採用 SQLite3，包含兩張核心資料表：attractions (景點主表) 與 favorites (收藏關聯表)。
+本系統採用 SQLite 資料庫（檔名：hualien_travel.db），包含三個主要資料表：attractions（景點主表）、favorites（收藏表）與 admins（管理員表）。
 
 
 
-1.attractions 景點資料表
+<img width="780" height="682" alt="資料庫說明" src="https://github.com/user-attachments/assets/9501480b-5885-48e6-a4c2-a4787325e125" />
 
 
-
-<img width="732" height="406" alt="attractions 景點資料表" src="https://github.com/user-attachments/assets/91b54c2e-1a5f-4042-88b9-cbc2e7fc3b50" />
-
-
-
-
-
-2.favorites 收藏資料表
-
-<img width="942" height="523" alt="favorites 收藏資料表" src="https://github.com/user-attachments/assets/df20ed2c-46bf-4289-a956-e0a712303d57" />
 
 
 #### 
@@ -301,6 +304,18 @@
 
 
 <img width="854" height="704" alt="取得使用者收藏清單" src="https://github.com/user-attachments/assets/d3b4c408-8b1c-4814-acea-3473ebba81c9" />
+
+7\. 後台管理與頁面路由管理員登入
+   HTTP 方法：GET / POST  路徑：/admin/login  說明：GET 載入登入頁面；
+   POST 驗證帳號密碼，驗證通過將建立 Session 並跳轉至後台頁面。
+   後台管理儀表板  HTTP 方法：GET  路徑：/admin/dashboard  說明：驗證管理員 Session 權限，驗證成功顯示管理頁面（manage.html），否則重定向至登入頁。
+   前端頁面路由  GET /：系統歡迎首頁 (welcome.html)
+                GET /index：景點瀏覽主頁 (index.html)
+                GET /favorite：使用者收藏頁面 (favorite.html)
+                GET /test2：測試頁面 (test2.html)
+                GET /frontend/<path:filename>：提供前端靜態檔案發布與載入 
+
+
 
 
 #### ⚙️ 安裝與執行方式 (Installation \& Setup)
