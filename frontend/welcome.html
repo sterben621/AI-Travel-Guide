@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花蓮導覽歡迎頁面</title>
+    <style>
+        /* 歡迎頁面樣式設定 */
+        .welcome-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url(/frontend/images1/image_a0f006e2.png) no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: #ffffff;
+            max-width: 600px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .welcome-subtitle {
+            display: inline-block;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-desc {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-btn {
+            background-color: #f77f00;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .welcome-btn:hover {
+            background-color: #d66f00;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 隱藏時的狀態 */
+        .welcome-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hualien-welcome-overlay" class="welcome-container">
+        <div class="welcome-content">
+            <span class="welcome-subtitle">洄瀾‧山海之美</span>
+            <h1 class="welcome-title">歡迎來到花蓮觀光導覽</h1>
+            <p class="welcome-desc">探索壯麗的太魯閣峽谷與蔚藍的太平洋海岸，展開您的花蓮療癒之旅。</p>
+
+            <!-- 改為 <a> 標籤 -->
+            <a href="/index" id="enter-site-btn" class="welcome-btn inline-block text-center">開始探索洄瀾</a>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    // 互動效果 JavaScript
+    document.getElementById('enter-site-btn').addEventListener('click', function () {
+        const overlay = document.getElementById('hualien-welcome-overlay');
+        overlay.classList.add('welcome-hidden');
+
+        // 完全淡出後從 DOM 中移除（可選）
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 600);
+    });
+</script>

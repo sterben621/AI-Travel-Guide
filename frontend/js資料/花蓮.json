@@ -1,0 +1,94 @@
+{
+    "product": [
+        {
+            "id": "HL-ATT-001",
+            "title": "太魯閣國家公園 (燕子口步道)",
+            "region": "花蓮縣秀林鄉",
+            "category": "自然峽谷/步道探險",
+            "image_url": "images1/image_燕子步道ai.png",
+            "description": "燕子口步道為太魯閣峽谷的精華路段。沿途可欣賞立霧溪長年侵蝕雕刻出的峭壁、壺穴地形，大自然的鬼斧神工令人讚嘆。",
+            "created_at": "2026-07-29T10:00:00Z"
+        },
+        {
+            "id": "HL-ATT-002",
+            "title": "七星潭風景區",
+            "region": "花蓮縣新城鄉",
+            "category": "海景勝地/單車漫遊",
+            "image_url": "images1/image_七星潭ai.png",
+            "description": "擁有優美弧形海灣的縣級風景區。海水潔淨蔚藍，海岸旁鋪滿了渾圓的黑鵝卵石，是踏浪、看日出及夜晚觀星的絕佳去處。",
+            "created_at": "2026-07-29T10:05:00Z"
+        },
+        {
+            "id": "HL-ATT-003",
+            "title": "鯉魚潭風景區",
+            "region": "花蓮縣壽豐鄉",
+            "category": "湖泊生態/水上休閒",
+            "image_url": "images1/image_鯉魚潭ai.png",
+            "description": "花蓮境內最大的內陸湖泊，因東側的鯉魚山形似鯉魚而得名。潭水清澈，四周設有環潭自行車道，並提供踩天鵝船及划槳體驗。",
+            "created_at": "2026-07-29T10:10:00Z"
+        },
+        {
+            "id": "HL-ATT-004",
+            "title": "遠雄海洋公園",
+            "region": "花蓮縣壽豐鄉",
+            "category": "主題樂園/親子休閒",
+            "image_url": "images1/image_遠雄海洋公園ai.png",
+            "description": "全台首座結合海洋生態、美人魚劇場與娛樂設施的主題樂園。設有全台唯一的海洋哺乳動物生態教室，非常適合全家出遊。",
+            "created_at": "2026-07-29T10:15:00Z"
+        },
+        {
+            "id": "HL-ATT-005",
+            "title": "瑞穗牧場",
+            "region": "花蓮縣瑞穗鄉",
+            "category": "觀光牧場/美食體驗",
+            "image_url": "images1/image_瑞穗牧場ai.png",
+            "description": "依靠中央山脈純淨水源建立的觀光牧場。遊客在此可以近距離餵食乳牛，並在露天咖啡座享用新鮮香濃的鮮奶、鮮奶饅頭與牛軋糖。",
+            "created_at": "2026-07-29T10:20:00Z"
+        },
+        {
+            "id": "HL-ATT-006",
+            "title": "石梯坪風景區",
+            "region": "花蓮縣豐濱鄉",
+            "category": "地質景觀/潮間帶觀察",
+            "image_url": "images1/image_石梯坪風景區ai.png",
+            "description": "擁有世界級的戶外地質教室。因海水長期侵蝕形成如階梯般的白色凝灰岩岩岸，潮間帶生態極為豐富，也是潛水者的天堂。",
+            "created_at": "2026-07-29T10:25:00Z"
+        },
+        {
+            "id": "HL-ATT-007",
+            "title": "花蓮東大門夜市",
+            "region": "花蓮縣花蓮市",
+            "category": "在地美食/夜市文化",
+            "image_url": "images1/image_花蓮東大們夜市ai.png",
+            "description": "東台灣最大規模的夜市。由福町夜市、自強夜市、原住民一條街及各省一條街組成，匯集了數百家具有花蓮在地原住民與傳統特色的小吃。",
+            "created_at": "2026-07-29T10:30:00Z"
+        },
+        {
+            "id": "HL-ATT-008",
+            "title": "親不知子海上古道",
+            "region": "花蓮縣豐濱鄉",
+            "category": "天空步道/峭壁驚險",
+            "image_url": "images1/image_古道ai.jpg",
+            "description": "沿著垂直峭壁建造的懸崖步道，其中有一段由透明強化玻璃打造，走在上方能直接俯瞰腳下洶湧的太平洋，驚險刺激且視野極佳。",
+            "created_at": "2026-07-29T10:35:00Z"
+        },
+        {
+            "id": "HL-ATT-009",
+            "title": "大農大富平地森林園區",
+            "region": "花蓮縣光復鄉",
+            "category": "平地森林/綠色生態",
+            "image_url": "images1/image_森陵園區ai.jpg",
+            "description": "台灣首座平地森林園區，面積廣闊，擁有豐富的低海拔生態。園區內設有標準林蔭自行車道，春夏交接時是著名的賞螢聖地。",
+            "created_at": "2026-07-29T10:40:00Z"
+        },
+        {
+            "id": "HL-ATT-010",
+            "title": "山度空間",
+            "region": "花蓮縣壽豐鄉",
+            "category": "網美打卡/景觀咖啡",
+            "image_url": "images1/image_山度空間ai.jpg",
+            "description": "依山而建的熱門網美拍照景點。園區內設有經典的夢幻玻璃鞦韆與三角木屋，坐在高處能將綠意、藍天與海景一同收入相機中。",
+            "created_at": "2026-07-29T10:45:00Z"
+        }
+    ]
+}

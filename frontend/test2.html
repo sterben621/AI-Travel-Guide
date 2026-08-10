@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>花蓮旅遊 | 探索景點列表</title>
+    <!-- 引入 Bootstrap 5 與 FontAwesome 圖示 -->
+    <link rel="stylesheet" href="./css首頁/bootstrap.min.css">
+    <link rel="stylesheet" href="./css1/all.min.css">
+    <link rel="stylesheet" href="./css首頁/專案.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- 2. Tailwind CSS CDN (解析內容區塊的 Tailwind 類名) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 3. Iconify 圖示元件庫 -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+</head>
+
+<body class="antialiased bg-slate-50 text-slate-800 overflow-x-hidden">
+    <div id="app">
+        <!-- 導覽列 (Navbar) -->
+        <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16 items-center">
+
+                    <!-- Brand Logo & 名稱 -->
+                    <a href="/index"
+                        class="flex items-center gap-2 text-slate-900 font-bold text-lg hover:text-emerald-600 transition-colors">
+                        <span
+                            class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-white shadow-sm shrink-0">
+                            <i class="fa-solid fa-mountain text-sm"></i>
+                        </span>
+                        <span class="truncate">花蓮景點導覽網站</span>
+                    </a>
+
+                    <!-- 右側選單列表 (電腦版) -->
+                    <div class="hidden md:flex items-center gap-8">
+                        <a href="/index"
+                            class="text-slate-600 font-medium hover:text-emerald-600 transition-colors py-2">
+                            首頁
+                        </a>
+                        <a href="/test2"
+                            class="text-slate-600 font-medium hover:text-emerald-600 transition-colors py-2">
+                            景點列表
+                        </a>
+                        <a href="/admin/dashboard"
+                            class="text-slate-600 font-medium hover:text-emerald-600 transition-colors py-2">
+                            景點管理
+                        </a>
+                        <a href="/favorite"
+                            class="text-slate-600 font-medium hover:text-emerald-600 transition-colors py-2">
+                            我的收藏
+                        </a>
+                    </div>
+
+                    <!-- 手機版選單按鈕 (漢堡選單) -->
+                    <div class="flex md:hidden">
+                        <button type="button"
+                            onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+                            style="min-height: 40px; min-width: 40px;"
+                            class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors">
+                            <i class="fa-solid fa-bars text-xl"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 手機版下拉選單區塊 -->
+            <div class="hidden md:hidden border-t border-slate-100 bg-white" id="mobile-menu">
+                <div class="px-4 pt-2 pb-3 space-y-1">
+                    <a href="/index" style="min-height: 36px;"
+                        class="flex items-center px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">
+                        首頁
+                    </a>
+                    <a href="/test2" style="min-height: 36px;"
+                        class="flex items-center px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">
+                        景點列表
+                    </a>
+                    <a href="/admin/dashboard" style="min-height: 36px;"
+                        class="flex items-center px-3 py-2 rounded-md text-base font-semibold text-emerald-600 bg-emerald-50">
+                        景點管理
+                    </a>
+                    <a href="/favorite" style="min-height: 36px;"
+                        class="flex items-center px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">
+                        我的收藏
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 頂部滿版橫幅 (Hero Banner) -->
+        <header
+            class="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 text-white py-12 md:py-20 mb-8 md:mb-12 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-3 md:mb-4">探索花蓮景點列表</h1>
+                <p class="text-xs md:text-sm text-slate-300 font-light max-w-xl mx-auto">沉浸在山海之間，尋找內心的寧靜與感動</p>
+            </div>
+        </header>
+
+        <!-- 主體內容區 -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-6 md:my-10">
+            <!-- 搜尋與篩選控制列 (375px 下自動堆疊，防止跑版) -->
+            <div class="max-w-3xl mx-auto mb-8 md:mb-12">
+                <div class="flex flex-col sm:flex-row gap-2 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm">
+                    <!-- 搜尋框 -->
+                    <div class="relative flex-grow">
+                        <i
+                            class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text"
+                            class="w-full pl-10 pr-4 py-3 bg-transparent text-sm text-slate-800 focus:outline-none placeholder-slate-400"
+                            v-model="searchQuery" placeholder="搜尋景點名稱或關鍵字（如：太魯閣、海灘...）">
+                    </div>
+
+                    <!-- 下拉選單 (高度 44px) -->
+                    <select
+                        class="px-4 py-2.5 sm:py-0 border-t sm:border-t-0 sm:border-l border-slate-100 bg-slate-50 sm:bg-transparent text-xs text-slate-600 rounded-xl sm:rounded-none focus:outline-none cursor-pointer shrink-0"
+                        style="min-height: 44px;" v-model="perPage" @change="currentPage = 1">
+                        <option :value="3">一次顯示 3 筆</option>
+                        <option :value="6">一次顯示 6 筆</option>
+                        <option :value="12">一次顯示 12 筆</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 景點列表標題 -->
+            <div class="mb-6 md:mb-8">
+                <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest block mb-1">EXPLORE
+                    HUALIEN</span>
+                <h2 class="text-xl md:text-2xl font-bold text-slate-900">精選景點一覽</h2>
+            </div>
+
+            <!-- 景點卡片網格 (桌機 3 欄 / 平板 2 欄 / 手機 1 欄) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div v-for="item in paginatedData" :key="item.id" class="h-full">
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+
+                        <!-- 圖片容器 (保持 4:3 比例，圖片絕不壓扁) -->
+                        <div class="aspect-[4/3] relative overflow-hidden bg-slate-100 shrink-0">
+                            <img :src="item.img" :alt="item.name"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                            <!-- 愛心收藏按鈕 (確保高度 >= 40px) -->
+                            <button style="min-height: 40px; min-width: 40px;"
+                                class="absolute top-3 right-3 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-md hover:scale-110 active:scale-95 transition-all duration-200"
+                                @click="toggleFavorite(item)">
+                                <i class="fas fa-heart text-base transition-colors"
+                                    :class="favorites.includes(item.id) ? 'text-red-500' : 'text-slate-300'">
+                                </i>
+                            </button>
+                        </div>
+
+                        <!-- 卡片內容區塊 -->
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-slate-900 mb-1.5 line-clamp-1">{{ item.name }}</h3>
+                            <p class="text-xs text-slate-400 mb-3 flex items-center gap-1.5">
+                                <i class="fas fa-map-marker-alt text-red-500"></i>
+                                <span>{{ item.city }}</span>
+                                <span>|</span>
+                                <span>{{ item.category }}</span>
+                            </p>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-6 flex-grow line-clamp-3">
+                                {{ item.description }}...
+                            </p>
+
+                            <!-- 了解更多按鈕 (高度 >= 44px) -->
+                            <div class="mt-auto">
+                                <button @click="openModal(item)"
+                                    class="px-4 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition-colors">
+                                    了解更多
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分頁控制按鈕 -->
+            <nav class="mt-10 md:mt-14" v-if="totalPages > 1">
+                <ul class="flex items-center justify-center gap-2">
+                    <!-- 上一頁 -->
+                    <li>
+                        <button style="min-height: 40px; min-width: 40px;"
+                            class="rounded-full flex items-center justify-center border border-slate-200 text-slate-600 hover:bg-emerald-50 hover:border-emerald-500 hover:text-emerald-600 disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:border-slate-200 disabled:hover:text-slate-600 transition-all text-sm font-bold"
+                            :class="{ 'opacity-40 pointer-events-none': currentPage === 1 }" @click="currentPage--"
+                            aria-label="Previous">
+                            &laquo;
+                        </button>
+                    </li>
+
+                    <!-- 頁碼 -->
+                    <li v-for="page in totalPages" :key="page">
+                        <button style="min-height: 40px; min-width: 40px;"
+                            class="rounded-full flex items-center justify-center text-xs font-bold transition-all"
+                            :class="currentPage === page ? 'bg-emerald-500 text-white shadow-sm' : 'border border-slate-200 text-slate-600 hover:bg-slate-100'"
+                            @click="currentPage = page">
+                            {{ page }}
+                        </button>
+                    </li>
+
+                    <!-- 下一頁 -->
+                    <li>
+                        <button style="min-height: 40px; min-width: 40px;"
+                            class="rounded-full flex items-center justify-center border border-slate-200 text-slate-600 hover:bg-emerald-50 hover:border-emerald-500 hover:text-emerald-600 disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:border-slate-200 disabled:hover:text-slate-600 transition-all text-sm font-bold"
+                            :class="{ 'opacity-40 pointer-events-none': currentPage === totalPages }"
+                            @click="currentPage++" aria-label="Next">
+                            &raquo;
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </main>
+
+        <!-- 頁尾 (Footer) -->
+        <footer class="bg-slate-950 text-slate-400 py-12 md:py-16 border-t border-slate-900 text-xs">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-8 md:mb-12">
+                <!-- 品牌資訊 -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2 text-white font-bold text-base">
+                        <span
+                            class="w-6 h-6 rounded bg-emerald-500 flex items-center justify-center text-white shrink-0">
+                            <i class="fa-solid fa-mountain text-xs"></i>
+                        </span>
+                        <span>AI Travel Guide</span>
+                    </div>
+                    <p class="text-slate-500 text-[11px] leading-relaxed">
+                        極致慢旅 ｜ 以海為伴，遨遊山林，與您一同尋訪花蓮自然美景。
+                    </p>
+                </div>
+
+                <!-- 快速連結 -->
+                <div>
+                    <h5 class="text-white font-bold mb-3 text-xs">快速連結</h5>
+                    <ul class="space-y-2 text-[11px] text-slate-500">
+                        <li><a href="/index" class="hover:text-emerald-400 transition-colors py-1 inline-block">首頁</a>
+                        </li>
+                        <li><a href="/test2" class="hover:text-emerald-400 transition-colors py-1 inline-block">景點列表</a>
+                        </li>
+                        <li><a href="/admin/dashboard"
+                                class="hover:text-emerald-400 transition-colors py-1 inline-block">景點管理</a></li>
+                        <li><a href="/favorite"
+                                class="hover:text-emerald-400 transition-colors py-1 inline-block">我的收藏</a></li>
+                    </ul>
+                </div>
+
+                <!-- 熱門景點 -->
+                <div>
+                    <h4 class="text-white font-bold mb-3 text-xs">熱門景點</h4>
+                    <ul class="space-y-2 text-[11px] text-slate-500">
+                        <li><a href="/test2"
+                                class="hover:text-emerald-400 transition-colors py-1 inline-block">太魯閣國家公園</a></li>
+                        <li><a href="/test2" class="hover:text-emerald-400 transition-colors py-1 inline-block">清水斷崖</a>
+                        </li>
+                        <li><a href="/test2"
+                                class="hover:text-emerald-400 transition-colors py-1 inline-block">七星潭風景區</a></li>
+                    </ul>
+                </div>
+
+                <!-- 聯絡我們 -->
+                <div>
+                    <h4 class="text-white font-bold mb-3 text-xs">聯絡我們</h4>
+                    <ul class="space-y-2 text-[11px] text-slate-500">
+                        <li>諮詢專線：+886 3 832 0000</li>
+                        <li class="break-all">電子郵件：contact@hualien-travel.com.tw</li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </footer>
+        <!-- 💡 完整版 景點詳細資料 Modal 彈窗 -->
+        <div v-if="selectedAttraction"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4 transition-opacity backdrop-blur-sm"
+            @click.self="closeModal">
+
+            <div
+                class="bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative animate-fade-in border border-slate-100">
+
+                <!-- 右上角關閉按鈕 -->
+                <button @click="closeModal"
+                    class="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-colors text-lg backdrop-blur-md">
+                    &times;
+                </button>
+
+                <!-- 景點大圖與上方漸層 -->
+                <div class="relative w-full h-64 md:h-80 overflow-hidden">
+                    <img :src="selectedAttraction.img || selectedAttraction.image_url" :alt="selectedAttraction.name"
+                        class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent">
+                    </div>
+
+                    <div class="absolute bottom-4 left-6 right-6 text-white">
+                        <span
+                            class="inline-block bg-emerald-500/90 text-white text-xs font-semibold px-3 py-1 rounded-full mb-2 backdrop-blur-sm">
+                            {{ selectedAttraction.category }}
+                        </span>
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">
+                            {{ selectedAttraction.name }}
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- 內容區塊 -->
+                <div class="p-6 md:p-8 space-y-6">
+
+                    <!-- 實用資訊網格 (營業時間、門票、電話、地址) -->
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs md:text-sm">
+
+                        <div class="flex items-start gap-3 text-slate-600">
+                            <i class="fas fa-clock text-emerald-600 mt-1"></i>
+                            <div>
+                                <span class="font-bold text-slate-800 block">開放時間</span>
+                                <span>{{ selectedAttraction.open_hours || '全天開放（請依現場公告為準）' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 text-slate-600">
+                            <i class="fas fa-ticket-alt text-emerald-600 mt-1"></i>
+                            <div>
+                                <span class="font-bold text-slate-800 block">門票資訊</span>
+                                <span>{{ selectedAttraction.ticket || '免費參觀' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 text-slate-600">
+                            <i class="fas fa-phone text-emerald-600 mt-1"></i>
+                            <div>
+                                <span class="font-bold text-slate-800 block">聯絡電話</span>
+                                <span>{{ selectedAttraction.phone || '無提供電話資訊' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 text-slate-600">
+                            <i class="fas fa-map-marked-alt text-emerald-600 mt-1"></i>
+                            <div>
+                                <span class="font-bold text-slate-800 block">景點地址</span>
+                                <span>{{ selectedAttraction.address || selectedAttraction.city }}</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 景點完整介紹 -->
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i class="fas fa-align-left text-emerald-600"></i>
+                            景點深度介紹
+                        </h3>
+                        <p class="text-slate-600 text-sm leading-relaxed whitespace-pre-line bg-white">
+                            {{ selectedAttraction.description || '暫無詳細介紹資料。' }}
+                        </p>
+                    </div>
+
+                    <!-- 交通與小貼士 (選填區塊) -->
+                    <div v-if="selectedAttraction.transport" class="border-t border-slate-100 pt-4">
+                        <h3 class="text-base font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i class="fas fa-bus text-emerald-600"></i>
+                            交通方式
+                        </h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            {{ selectedAttraction.transport }}
+                        </p>
+                    </div>
+
+                    <!-- 底部動作按鈕列 -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100">
+                        <!-- 地圖導航按鈕 -->
+                        <a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(selectedAttraction.name + ' ' + selectedAttraction.city)"
+                            target="_blank"
+                            class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs md:text-sm font-semibold rounded-xl transition-colors flex items-center gap-2">
+                            <i class="fas fa-location-arrow text-emerald-600"></i>
+                            Google 地圖導航
+                        </a>
+
+                        <div class="flex items-center gap-3">
+                            <button @click="toggleFavorite(selectedAttraction)"
+                                class="px-4 py-2.5 rounded-xl border border-red-200 text-red-500 hover:bg-red-50 text-xs md:text-sm font-semibold transition-colors flex items-center gap-2">
+                                <i :class="favorites.includes(selectedAttraction.id) ? 'fas text-red-500' : 'far'"
+                                    class="fa-heart"></i>
+                                {{ favorites.includes(selectedAttraction.id) ? '已收藏' : '加入收藏' }}
+                            </button>
+
+                            <button @click="closeModal"
+                                class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs md:text-sm rounded-xl transition-colors font-semibold">
+                                完成閱讀
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="jss/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+    <script>
+        const API_BASE_URL = 'http://127.0.0.1:5000/api';
+
+        const App = {
+            data() {
+                return {
+                    HotelData: [],            // 從 API 抓取的所有景點清單
+                    searchQuery: "",          // 搜尋關鍵字綁定
+                    favorites: [],            // 已收藏景點的 ID 陣列 (例如: ["1", "2"])
+                    currentPage: 1,          // 當前頁碼
+                    perPage: 6,              // 每頁顯示筆數 (預設 6 筆)
+                    selectedAttraction: null  // 彈窗 Modal 目前顯示的景點物件
+                }
+            },
+            watch: {
+                // 當搜尋關鍵字改變時，自動切換回第 1 頁
+                searchQuery() {
+                    this.currentPage = 1;
+                }
+            },
+            computed: {
+                // 1. 關鍵字搜尋過濾
+                filteredData() {
+                    const query = this.searchQuery.toLowerCase().trim();
+                    if (!query) return this.HotelData;
+
+                    return this.HotelData.filter(item => {
+                        const nameMatch = (item.name || '').toLowerCase().includes(query);
+                        const descMatch = (item.description || '').toLowerCase().includes(query);
+                        const cityMatch = (item.city || '').toLowerCase().includes(query);
+                        const catMatch = (item.category || '').toLowerCase().includes(query);
+
+                        return nameMatch || descMatch || cityMatch || catMatch;
+                    });
+                },
+                // 2. 計算總頁數 (提供給分頁按鈕)
+                totalPages() {
+                    return Math.ceil(this.filteredData.length / this.perPage) || 1;
+                },
+                // 3. 當前頁面切片資料 (提供給 v-for="item in paginatedData")
+                paginatedData() {
+                    const start = (this.currentPage - 1) * this.perPage;
+                    const end = start + this.perPage;
+                    return this.filteredData.slice(start, end);
+                }
+            },
+            methods: {
+                // 取得景點列表資料
+                async getHotelData() {
+                    try {
+                        const res = await axios.get(`${API_BASE_URL}/attractions`);
+                        const sourceData = res.data.attractions || [];
+
+                        // 統一格式轉化，確保與 HTML 欄位綁定對齊
+                        this.HotelData = sourceData.map(item => ({
+                            id: item.id,
+                            name: item.title || item.name || "未命名景點",
+                            description: item.description || "暫無介紹內容。",
+                            category: item.category || "自然風景",
+                            city: item.region || item.city || "花蓮縣",
+                            img: item.image_url || item.img || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500"
+                        }));
+                    } catch (err) {
+                        console.error("取得景點列表失敗:", err);
+                    }
+                },
+
+                // 取得使用者收藏清單
+                async getFavorites() {
+                    try {
+                        const res = await axios.get(`${API_BASE_URL}/favorites/guest`);
+                        const favList = res.data.favorites || [];
+                        // 僅抽取 ID 存入陣列，方便 HTML 比對 favorites.includes(item.id)
+                        this.favorites = favList.map(item => item.id);
+                    } catch (err) {
+                        console.error("取得收藏列表失敗:", err);
+                    }
+                },
+
+                // 切換收藏狀態 (新增 / 移除)
+                async toggleFavorite(item) {
+                    if (!item || !item.id) return;
+
+                    try {
+                        const res = await axios.post(`${API_BASE_URL}/favorite`, {
+                            user_id: "guest",
+                            attraction_id: item.id
+                        });
+
+                        if (res.data.status === "favorited") {
+                            this.favorites.push(item.id);
+                        } else {
+                            this.favorites = this.favorites.filter(id => id !== item.id);
+                        }
+                    } catch (err) {
+                        console.error("切換收藏狀態失敗:", err);
+                    }
+                },
+
+                // 開啟彈窗 Modal
+                async openModal(item) {
+                    // 先顯示卡片基本資訊，避免彈窗延遲
+                    this.selectedAttraction = { ...item };
+                    document.body.style.overflow = 'hidden';
+
+                    try {
+                        // 向 Flask 獲取該景點完整的欄位 (包含電話、營業時間、詳細地址等)
+                        const res = await axios.get(`${API_BASE_URL}/attraction/${item.id}`);
+                        if (res.data && res.data.attraction) {
+                            const detail = res.data.attraction;
+
+                            // 補充/覆蓋詳細欄位
+                            this.selectedAttraction = {
+                                ...this.selectedAttraction,
+                                open_hours: detail.open_hours || detail.time,
+                                ticket: detail.ticket || detail.ticket_info,
+                                phone: detail.phone,
+                                address: detail.address,
+                                transport: detail.transport,
+                                description: detail.description
+                            };
+                        }
+                    } catch (err) {
+                        console.log("使用快取資料展示彈窗");
+                    }
+                },
+
+                closeModal() {
+                    this.selectedAttraction = null;
+                    document.body.style.overflow = '';
+                }
+            },
+            mounted() {
+                this.getHotelData();
+                this.getFavorites();
+            }
+        };
+
+        Vue.createApp(App).mount("#app");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>花蓮觀光導覽｜管理員登入</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:
+                "Noto Sans TC",
+                "Microsoft JhengHei",
+                sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(18, 65, 72, 0.88),
+                    rgba(48, 110, 104, 0.72)),
+                url("/frontend/images1/image_a0f006e2.png");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        /* 背景裝飾 */
+
+        body::before {
+            content: "";
+            position: absolute;
+
+            width: 550px;
+            height: 550px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            top: -220px;
+            right: -150px;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            bottom: -220px;
+            left: -120px;
+        }
+
+
+        /* 整個登入區 */
+
+        .login-wrapper {
+            width: 920px;
+            max-width: 92%;
+
+            min-height: 540px;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.25);
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* 左邊花蓮介紹 */
+
+        .intro-section {
+            width: 50%;
+
+            padding: 55px;
+
+            color: white;
+
+            background:
+                linear-gradient(145deg,
+                    rgba(25, 83, 88, 0.96),
+                    rgba(73, 133, 124, 0.92));
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            position: relative;
+        }
+
+
+        .intro-section::after {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+
+            border-radius: 50%;
+
+            right: -80px;
+            bottom: -70px;
+        }
+
+
+        .brand {
+            font-size: 15px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 18px;
+
+            opacity: 0.9;
+        }
+
+
+        .intro-title {
+            font-size: 42px;
+
+            line-height: 1.35;
+
+            font-weight: 700;
+
+            margin-bottom: 25px;
+        }
+
+
+        .intro-title span {
+            color: #f4d58d;
+        }
+
+
+        .intro-text {
+            font-size: 16px;
+
+            line-height: 2;
+
+            color: rgba(255, 255, 255, 0.88);
+
+            max-width: 350px;
+        }
+
+
+        .location-info {
+            margin-top: 45px;
+
+            display: flex;
+            gap: 12px;
+
+            align-items: center;
+
+            font-size: 14px;
+
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+
+        .location-icon {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.14);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* 右邊登入 */
+
+        .login-section {
+            width: 50%;
+
+            padding: 55px 65px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .login-title {
+            font-size: 30px;
+
+            color: #244f50;
+
+            margin-bottom: 10px;
+        }
+
+
+        .login-subtitle {
+            color: #888;
+
+            font-size: 14px;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* 表單 */
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            font-size: 14px;
+
+            color: #555;
+
+            margin-bottom: 9px;
+
+            font-weight: 600;
+        }
+
+
+        .input-box {
+            position: relative;
+        }
+
+
+        .input-icon {
+            position: absolute;
+
+            left: 16px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #8ba6a1;
+
+            font-size: 16px;
+        }
+
+
+        .input-box input {
+            width: 100%;
+
+            height: 52px;
+
+            border: 1px solid #dce5e3;
+
+            border-radius: 12px;
+
+            padding: 0 16px 0 45px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            background: #f8faf9;
+
+            transition: 0.25s;
+        }
+
+
+        .input-box input:focus {
+            border-color: #55948a;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(85, 148, 138, 0.1);
+        }
+
+
+        /* 登入按鈕 */
+
+        .login-button {
+            width: 100%;
+
+            height: 54px;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(135deg,
+                    #397d78,
+                    #285e63);
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+            box-shadow:
+                0 8px 18px rgba(42, 100, 99, 0.22);
+        }
+
+
+        .login-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 24px rgba(42, 100, 99, 0.3);
+        }
+
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+
+        /* 底部 */
+
+        .login-footer {
+            text-align: center;
+
+            margin-top: 28px;
+
+            font-size: 12px;
+
+            color: #aaa;
+
+            line-height: 1.8;
+        }
+
+
+        .back-link {
+            display: inline-block;
+
+            margin-top: 12px;
+
+            color: #397d78;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            transition: 0.2s;
+        }
+
+
+        .back-link:hover {
+            color: #244f50;
+        }
+
+
+        /* 手機版 */
+
+        @media (max-width: 760px) {
+
+            .login-wrapper {
+                flex-direction: column;
+
+                min-height: auto;
+            }
+
+            .intro-section {
+                width: 100%;
+
+                padding: 40px;
+
+                min-height: 280px;
+            }
+
+            .intro-title {
+                font-size: 32px;
+            }
+
+            .intro-text {
+                display: none;
+            }
+
+            .location-info {
+                margin-top: 25px;
+            }
+
+            .login-section {
+                width: 100%;
+
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <div class="login-wrapper">
+
+
+        <!-- 左側：花蓮觀光主題 -->
+
+        <section class="intro-section">
+
+            <div class="brand">
+                HUALIEN TRAVEL GUIDE
+            </div>
+
+            <h1 class="intro-title">
+                探索花蓮<br>
+                <span>山海之間的美好</span>
+            </h1>
+
+            <p class="intro-text">
+                歡迎回到花蓮觀光導覽管理系統。
+                在這裡管理景點資訊，讓每一位旅人
+                都能找到屬於自己的花蓮旅行。
+            </p>
+
+
+            <div class="location-info">
+
+                <div class="location-icon">
+                    📍
+                </div>
+
+                <span>
+                    花蓮・山海相遇的地方
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- 右側：登入 -->
+
+        <section class="login-section">
+
+            <h2 class="login-title">
+                管理員登入
+            </h2>
+
+            <p class="login-subtitle">
+                請登入以管理花蓮觀光景點資料
+            </p>
+
+
+            <!-- 這裡之後會直接交給 Flask -->
+
+
+
+
+
+            <!-- ✅ 正確寫法 -->
+            <form method="POST" action="/admin/login">
+
+                <div class="form-group">
+                    <label for="username">管理員帳號</label>
+                    <div class="input-box">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="username" name="username" placeholder="請輸入管理員帳號" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">管理員密碼</label>
+                    <div class="input-box">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" name="password" placeholder="請輸入登入密碼" required>
+                    </div>
+                </div>
+
+                <!-- 將 <a> 標籤移除，並把 button 類型改為 submit -->
+                <button type="submit" class="login-button">登入管理後台</button>
+
+            </form>
+
+
+
+
+
+
+            <div class="login-footer">
+
+                本系統僅供花蓮觀光導覽網站管理使用
+
+                <br>
+
+                <a href="/index" class="back-link">
+                    ← 返回花蓮觀光導覽
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+
+</body>
+
+</html>

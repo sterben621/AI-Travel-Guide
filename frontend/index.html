@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>花蓮旅遊 ｜ 探索景點列表</title>
+
+    <!-- 1. 本地 CSS 檔 (依您的專案目錄) -->
+    <link rel="stylesheet" href="/frontend/css首頁/bootstrap.min.css">
+    <link rel="stylesheet" href="/frontend/css1/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/css首頁/專案.css">
+    <!-- 2. Tailwind CSS CDN (解析內容區塊的 Tailwind 類名) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 3. Iconify 圖示元件庫 -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+
+</head>
+
+<body class="antialiased bg-slate-50 text-slate-800 overflow-x-hidden">
+
+    <!-- 導覽列 (Navbar) -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+
+                <!-- Brand Logo & 名稱 -->
+                <a href="/index"
+                    class="flex items-center gap-2 text-slate-900 font-bold text-lg hover:text-emerald-600 transition-colors">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-white shadow-sm shrink-0">
+                        <i class="fa-solid fa-mountain text-sm"></i>
+                    </span>
+                    <span class="truncate">花蓮景點導覽網站</span>
+                </a>
+
+                <!-- 右側選單列表 (電腦版) -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="/index" class="text-slate-600 font-medium hover:text-emerald-600 transition-colors py-2">
+                        首頁
+                    </a>
+                    <a href="/test2" class="text-slate-600 font-medium hover:text-emerald-600 transition-colors py-2">
+                        景點列表
+                    </a>
+                    <a href="/admin/dashboard"
+                        class="text-slate-600 font-medium hover:text-emerald-600 transition-colors py-2">
+                        景點管理
+                    </a>
+                    <a href="/favorite"
+                        class="text-slate-600 font-medium hover:text-emerald-600 transition-colors py-2">
+                        我的收藏
+                    </a>
+                </div>
+
+                <!-- 手機版選單按鈕 (漢堡選單) -->
+                <div class="flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+                        style="min-height: 40px; min-width: 40px;"
+                        class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 手機版下拉選單區塊 -->
+        <div class="hidden md:hidden border-t border-slate-100 bg-white" id="mobile-menu">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <a href="/index" style="min-height: 36px;"
+                    class="flex items-center px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">
+                    首頁
+                </a>
+                <a href="/test2" style="min-height: 36px;"
+                    class="flex items-center px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">
+                    景點列表
+                </a>
+                <a href="/admin/dashboard" style="min-height: 36px;"
+                    class="flex items-center px-3 py-2 rounded-md text-base font-semibold text-emerald-600 bg-emerald-50">
+                    景點管理
+                </a>
+                <a href="/favorite" style="min-height: 36px;"
+                    class="flex items-center px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">
+                    我的收藏
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- 英雄區 (Hero Section) -->
+    <section
+        class="relative min-h-[75vh] md:min-h-[85vh] flex items-center justify-center pt-8 md:pt-16 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- 背景圖：防變形 -->
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000"
+                alt="花蓮山海" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-mask bg-black/40"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center text-white py-12 md:py-20">
+            <!-- 標籤組 -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-4 md:mb-6">
+                <span
+                    class="px-3 py-1 rounded-full bg-emerald-500/90 text-white text-[10px] md:text-xs font-medium tracking-wider">極致慢旅</span>
+                <span
+                    class="px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm text-slate-200 text-[10px] md:text-xs font-medium tracking-wider">山海秘境</span>
+                <span
+                    class="px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm text-slate-200 text-[10px] md:text-xs font-medium tracking-wider">花蓮美景</span>
+            </div>
+
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-4 md:mb-6 leading-tight">
+                探索花蓮的純粹壯麗<br>找回內心的寧靜與感動
+            </h1>
+
+            <p class="text-xs md:text-sm text-slate-200 max-w-xl mx-auto font-light leading-relaxed mb-8 opacity-90">
+                遠離喧囂都市，沈浸在大太平洋的波濤與太魯閣的鬼斧神工之中，專屬打造您於山海間的慢行程。
+            </p>
+
+            <!-- 浮貼式打卡地標圖示 (高度 >= 36px) -->
+            <div style="min-height: 36px;"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-medium">
+                <iconify-icon icon="solar:map-point-wave-bold" width="16" class="text-emerald-400"></iconify-icon>
+                <span>花蓮．遇見山海</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 三大核心特色 (Three Features Section) -->
+    <section id="features" class="py-12 md:py-20 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-xl mx-auto mb-8 md:mb-12">
+                <h2 class="text-xl md:text-2xl font-bold text-slate-900 mb-2 md:mb-3">三大核心特色</h2>
+                <p class="text-xs md:text-sm text-slate-500 leading-relaxed">我們為您精心策劃每一程，讓您不只是走訪景點，更享受慢活態度。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 特色 1 -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm hover-card">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 md:mb-6">
+                        <iconify-icon icon="solar:hourglass-line-duotone" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">慢活．山海靜憩</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        無緊湊行程，靜靜感受太平洋浪濤的韻律，七星潭踏浪、在慢步中，找回生活本質。
+                    </p>
+                </div>
+
+                <!-- 特色 2 -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm hover-card">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 md:mb-6">
+                        <iconify-icon icon="solar:compass-bold-duotone" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">探尋．峽谷秘境</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        帶領您深入太魯閣山谷與清澈溪水，避開人潮，感受大自然的微風與寂靜。
+                    </p>
+                </div>
+
+                <!-- 特色 3 -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm hover-card">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 md:mb-6">
+                        <iconify-icon icon="solar:heart-angle-bold-duotone" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">品味．在地人文</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        結合在地原民文化體驗與特色美食，讓身心沈浸在太平洋的溫暖與原鄉人文風情中。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 花蓮必訪經典景點 (Classic Spots Section) -->
+    <section id="spots" class="py-12 md:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10 gap-2 md:gap-4">
+                <div>
+                    <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest block mb-1">SELECTED
+                        VIEWS</span>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900">花蓮必訪經典景點</h2>
+                </div>
+                <p class="text-xs text-slate-400">從壯麗峽谷到蔚藍海岸，每一處景緻都是大自然最完美的創作。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 md:mb-12">
+                <!-- 卡片 1 -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover-card group flex flex-col h-full">
+                    <div class="h-48 overflow-hidden relative bg-slate-100 shrink-0">
+                        <img src="/frontend/images1/image_燕子步道ai.png" alt="太魯閣國家公園"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-medium text-slate-700 shadow-sm">推薦景點</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-emerald-600/90 backdrop-blur-md text-[10px] font-medium text-white shadow-sm">世界級峽谷</span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-slate-900 mb-1.5">太魯閣國家公園</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            鬼斧神工的大理石峽谷，感受大自然的壯麗與古道歷史。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 卡片 2 -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover-card group flex flex-col h-full">
+                    <div class="h-48 overflow-hidden relative bg-slate-100 shrink-0">
+                        <img src="/frontend/images1/image_鯉魚潭ai.png" alt="鯉魚潭"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-medium text-slate-700 shadow-sm">推薦景點</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-emerald-600/90 backdrop-blur-md text-[10px] font-medium text-white shadow-sm">花蓮境內最大的內陸湖泊</span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-slate-900 mb-1.5">鯉魚潭風景區</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            花蓮境內最大的內陸湖泊，因東側的鯉魚山形似鯉魚而得名。潭水清澈，四周設有環潭自行車道，並提供踩天鵝船及划槳體驗。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 卡片 3 -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover-card group flex flex-col h-full">
+                    <div class="h-48 overflow-hidden relative bg-slate-100 shrink-0">
+                        <img src="/frontend/images1/image_七星潭ai.png" alt="七星潭風景區"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-medium text-slate-700 shadow-sm">推薦景點</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-emerald-600/90 backdrop-blur-md text-[10px] font-medium text-white shadow-sm">月牙灣海灘</span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-slate-900 mb-1.5">七星潭風景區</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            優美的弧形海灣與礫石海灘，聆聽海浪與卵石碰撞聲。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 查看更多按鈕 (高度 >= 36px) -->
+            <div class="text-center">
+                <a href="/test2" style="min-height: 44px;"
+                    class="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-full border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-500 hover:text-white font-bold text-sm transition-all duration-300">
+                    <span>查看更多</span>
+                    <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 (Footer) -->
+    <footer class="bg-slate-950 text-slate-400 py-12 md:py-16 border-t border-slate-900 text-xs">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-8 md:mb-12">
+            <!-- 品牌資訊 -->
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-base">
+                    <span class="w-6 h-6 rounded bg-emerald-500 flex items-center justify-center text-white shrink-0">
+                        <i class="fa-solid fa-mountain text-xs"></i>
+                    </span>
+                    <span>花蓮景點導覽網站</span>
+                </div>
+                <p class="text-slate-500 text-[11px] leading-relaxed">
+                    極致慢旅 ｜ 以海為伴，遨遊山林，與您一同尋訪花蓮自然美景。
+                </p>
+            </div>
+
+            <!-- 快速連結 -->
+            <div>
+                <h5 class="text-white font-bold mb-3 text-xs">快速連結</h5>
+                <ul class="space-y-2 text-[11px] text-slate-500">
+                    <li><a href="/index" class="hover:text-emerald-400 transition-colors py-1 inline-block">首頁</a>
+                    </li>
+                    <li><a href="/test2" class="hover:text-emerald-400 transition-colors py-1 inline-block">景點列表</a>
+                    </li>
+                    <li><a href="/admin/dashboard"
+                            class="hover:text-emerald-400 transition-colors py-1 inline-block">景點管理</a>
+                    </li>
+                    <li><a href="/favorite" class="hover:text-emerald-400 transition-colors py-1 inline-block">我的收藏</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 熱門景點 -->
+            <div>
+                <h4 class="text-white font-bold mb-3 text-xs">熱門景點</h4>
+                <ul class="space-y-2 text-[11px] text-slate-500">
+                    <li><a href="/test2" class="hover:text-emerald-400 transition-colors py-1 inline-block">太魯閣國家公園</a>
+                    </li>
+                    <li><a href="/test2" class="hover:text-emerald-400 transition-colors py-1 inline-block">清水斷崖</a>
+                    </li>
+                    <li><a href="/test2" class="hover:text-emerald-400 transition-colors py-1 inline-block">七星潭風景區</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 聯絡我們 -->
+            <div>
+                <h4 class="text-white font-bold mb-3 text-xs">聯絡我們</h4>
+                <ul class="space-y-2 text-[11px] text-slate-500">
+                    <li>諮詢專線：+886 3 832 0000</li>
+                    <li class="break-all">電子郵件：contact@hualien-travel.com.tw</li>
+                </ul>
+            </div>
+        </div>
+
+    </footer>
+    <!-- Bootstrap 5 JavaScript (用於控制漢堡選單的開關) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
